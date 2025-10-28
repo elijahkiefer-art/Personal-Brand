@@ -22,7 +22,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 px-6">
+    <section id="contact" className="py-24 px-6 scroll-mt-32">
       <div className="container mx-auto max-w-4xl">
         {/* Section Header */}
         <div className="text-center mb-16">
