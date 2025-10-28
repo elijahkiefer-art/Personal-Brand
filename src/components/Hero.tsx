@@ -8,8 +8,10 @@ export default function Hero() {
     >
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute w-96 h-96 bg-blue-500/10 rounded-full blur-3xl -top-48 -left-48 animate-pulse"></div>
-        <div className="absolute w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl -bottom-48 -right-48 animate-pulse delay-1000"></div>
+        <div className="absolute -top-32 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.25),_transparent_60%)] blur-3xl" />
+        <div className="absolute bottom-0 right-0 h-[24rem] w-[24rem] rounded-full bg-[radial-gradient(circle_at_bottom,_rgba(124,58,237,0.25),_transparent_60%)] blur-3xl" />
+        <div className="absolute -bottom-32 left-0 h-[20rem] w-[20rem] rounded-full bg-[radial-gradient(circle_at_bottom_left,_rgba(16,185,129,0.2),_transparent_65%)] blur-3xl" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(12,74,110,0.35),_transparent_55%)] opacity-60" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -19,7 +21,7 @@ export default function Hero() {
             <h1 className="text-6xl md:text-8xl font-bold mb-4 bg-gradient-to-r from-white via-blue-100 to-cyan-200 bg-clip-text text-transparent">
               Elijah Kiefer
             </h1>
-            <div className="h-1 w-32 mx-auto bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full"></div>
+            <div className="h-1 w-32 mx-auto bg-gradient-to-r from-blue-500 via-cyan-400 to-fuchsia-500 rounded-full shadow-[0_0_25px_rgba(59,130,246,0.6)]"></div>
           </div>
 
           {/* Subtitle */}
@@ -37,16 +39,24 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 opacity-0 animate-fade-in animation-delay-600">
             <a
               href="#contact"
-              className="group px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 flex items-center justify-center gap-2"
+              className="group relative inline-flex items-center justify-center gap-2 rounded-full px-10 py-4 text-base font-semibold text-white transition-all duration-500"
             >
+              <span className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500 via-blue-500 to-fuchsia-500 opacity-90 transition-opacity duration-500 group-hover:opacity-100" aria-hidden="true" />
+              <span className="absolute -inset-[1px] rounded-full bg-gradient-to-r from-white/20 via-transparent to-white/20 opacity-0 blur-lg transition-opacity duration-500 group-hover:opacity-80" aria-hidden="true" />
+              <span className="relative flex items-center gap-2">
               Projekt starten
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-5 h-5 transition-transform duration-500 group-hover:translate-x-1" />
+              </span>
             </a>
             <a
               href="#services"
-              className="px-8 py-4 bg-slate-800/50 backdrop-blur-sm text-white rounded-lg font-semibold hover:bg-slate-800 border border-slate-700 hover:border-slate-600 transition-all duration-300"
+              className="group relative inline-flex items-center justify-center gap-2 rounded-full px-10 py-4 text-base font-semibold text-cyan-200 transition-all duration-500"
             >
+              <span className="absolute inset-0 rounded-full border border-cyan-400/40 bg-slate-900/60 backdrop-blur-xl transition-all duration-500 group-hover:border-cyan-300/70 group-hover:bg-slate-900/80" aria-hidden="true" />
+              <span className="absolute inset-[1px] rounded-full bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-fuchsia-500/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" aria-hidden="true" />
+              <span className="relative flex items-center gap-2">
               Meine Services
+              </span>
             </a>
           </div>
 
@@ -56,22 +66,25 @@ export default function Hero() {
               href="https://github.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-12 h-12 flex items-center justify-center rounded-full bg-slate-800/50 backdrop-blur-sm text-slate-300 hover:text-white hover:bg-slate-800 border border-slate-700 hover:border-slate-600 transition-all duration-300 hover:scale-110"
+              className="group relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-cyan-400/30 bg-slate-900/70 text-slate-300 transition-all duration-500 hover:text-white hover:shadow-[0_0_25px_rgba(6,182,212,0.45)]"
             >
+              <span className="absolute inset-0 bg-gradient-to-br from-cyan-500/15 via-blue-500/15 to-fuchsia-500/15 opacity-0 transition-opacity duration-500 group-hover:opacity-100" aria-hidden="true" />
               <Github className="w-5 h-5" />
             </a>
             <a
               href="https://linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-12 h-12 flex items-center justify-center rounded-full bg-slate-800/50 backdrop-blur-sm text-slate-300 hover:text-white hover:bg-slate-800 border border-slate-700 hover:border-slate-600 transition-all duration-300 hover:scale-110"
+              className="group relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-cyan-400/30 bg-slate-900/70 text-slate-300 transition-all duration-500 hover:text-white hover:shadow-[0_0_25px_rgba(6,182,212,0.45)]"
             >
+              <span className="absolute inset-0 bg-gradient-to-br from-cyan-500/15 via-blue-500/15 to-fuchsia-500/15 opacity-0 transition-opacity duration-500 group-hover:opacity-100" aria-hidden="true" />
               <Linkedin className="w-5 h-5" />
             </a>
             <a
               href="#contact"
-              className="w-12 h-12 flex items-center justify-center rounded-full bg-slate-800/50 backdrop-blur-sm text-slate-300 hover:text-white hover:bg-slate-800 border border-slate-700 hover:border-slate-600 transition-all duration-300 hover:scale-110"
+              className="group relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-cyan-400/30 bg-slate-900/70 text-slate-300 transition-all duration-500 hover:text-white hover:shadow-[0_0_25px_rgba(6,182,212,0.45)]"
             >
+              <span className="absolute inset-0 bg-gradient-to-br from-cyan-500/15 via-blue-500/15 to-fuchsia-500/15 opacity-0 transition-opacity duration-500 group-hover:opacity-100" aria-hidden="true" />
               <Mail className="w-5 h-5" />
             </a>
           </div>
@@ -80,8 +93,8 @@ export default function Hero() {
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 animate-fade-in animation-delay-1000">
-        <div className="w-6 h-10 border-2 border-slate-600 rounded-full flex justify-center">
-          <div className="w-1.5 h-3 bg-blue-500 rounded-full mt-2 animate-bounce"></div>
+        <div className="w-6 h-10 rounded-full border border-cyan-400/50 bg-slate-900/60 backdrop-blur-xl">
+          <div className="mx-auto mt-2 h-2 w-2 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 animate-bounce" />
         </div>
       </div>
     </section>
