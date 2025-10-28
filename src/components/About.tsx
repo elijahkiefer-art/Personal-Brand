@@ -25,14 +25,16 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-24 px-6">
-      <div className="container mx-auto max-w-6xl">
+    <section id="about" className="relative py-24 px-6 scroll-mt-32">
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/95 to-slate-950" aria-hidden="true" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(59,130,246,0.12),_transparent_60%)]" aria-hidden="true" />
+      <div className="container relative z-10 mx-auto max-w-6xl">
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Über mich
           </h2>
-          <div className="h-1 w-20 mx-auto bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full mb-6"></div>
+          <div className="h-1 w-24 mx-auto bg-gradient-to-r from-blue-500 via-cyan-400 to-fuchsia-500 rounded-full shadow-[0_0_20px_rgba(59,130,246,0.4)] mb-6" />
           <p className="text-slate-400 text-lg max-w-2xl mx-auto">
             Ein dualer Student mit einer Leidenschaft für Technologie, Design und einem aktiven Lebensstil.
           </p>
@@ -43,9 +45,12 @@ export default function About() {
           {interests.map((interest, index) => (
             <div
               key={index}
-              className="group bg-slate-800/30 backdrop-blur-sm border border-slate-700/50 rounded-xl p-8 hover:bg-slate-800/50 hover:border-slate-600 transition-all duration-300 hover:scale-105"
+              className="group relative overflow-hidden rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-8 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-cyan-400/40"
             >
-              <div className="w-16 h-16 rounded-lg bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center mb-6 text-blue-400 group-hover:text-cyan-400 transition-colors">
+              <span className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-500/10 via-blue-500/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" aria-hidden="true" />
+              <div className="relative z-10 mb-6 flex h-16 w-16 items-center justify-center rounded-xl bg-slate-900/70 text-cyan-300">
+                <span className="absolute inset-0 rounded-xl border border-cyan-400/25" aria-hidden="true" />
+                <span className="absolute -inset-2 -z-10 rounded-[22px] bg-gradient-to-br from-cyan-500/20 via-blue-500/10 to-fuchsia-500/20 blur-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" aria-hidden="true" />
                 {interest.icon}
               </div>
               <h3 className="text-2xl font-bold text-white mb-3">
@@ -59,31 +64,19 @@ export default function About() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
-          <div className="text-center p-6 bg-slate-800/20 backdrop-blur-sm rounded-lg border border-slate-700/30">
-            <div className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-2">
-              100%
+        <div className="mt-16 grid grid-cols-2 gap-6 md:grid-cols-4">
+          {[{ label: 'Engagement', value: '100%' }, { label: 'Fokus', value: 'AI' }, { label: 'Motivation', value: '24/7' }, { label: 'Potenzial', value: '∞' }].map((stat) => (
+            <div
+              key={stat.label}
+              className="relative overflow-hidden rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-6 text-center backdrop-blur-xl"
+            >
+              <span className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-500/10 via-blue-500/5 to-transparent" aria-hidden="true" />
+              <div className="relative z-10 text-4xl font-bold tracking-tight text-transparent bg-gradient-to-r from-cyan-300 via-blue-400 to-fuchsia-400 bg-clip-text">
+                {stat.value}
+              </div>
+              <div className="relative z-10 mt-2 text-sm uppercase tracking-[0.25em] text-slate-400">{stat.label}</div>
             </div>
-            <div className="text-slate-400 text-sm">Engagement</div>
-          </div>
-          <div className="text-center p-6 bg-slate-800/20 backdrop-blur-sm rounded-lg border border-slate-700/30">
-            <div className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-2">
-              AI
-            </div>
-            <div className="text-slate-400 text-sm">Fokus</div>
-          </div>
-          <div className="text-center p-6 bg-slate-800/20 backdrop-blur-sm rounded-lg border border-slate-700/30">
-            <div className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-2">
-              24/7
-            </div>
-            <div className="text-slate-400 text-sm">Motivation</div>
-          </div>
-          <div className="text-center p-6 bg-slate-800/20 backdrop-blur-sm rounded-lg border border-slate-700/30">
-            <div className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-2">
-              ∞
-            </div>
-            <div className="text-slate-400 text-sm">Potenzial</div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
