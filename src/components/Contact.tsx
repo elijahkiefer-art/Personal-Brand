@@ -1,5 +1,29 @@
+import type { LucideIcon } from 'lucide-react';
 import { Mail, MessageSquare, Send } from 'lucide-react';
 import { useState } from 'react';
+
+type ContactCard = {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  href?: string;
+  actionLabel?: string;
+};
+
+const CONTACT_CARDS: ContactCard[] = [
+  {
+    icon: Mail,
+    title: 'Email',
+    description: 'hello@elijahkiefer.com',
+    href: 'mailto:hello@elijahkiefer.com',
+    actionLabel: 'hello@elijahkiefer.com',
+  },
+  {
+    icon: MessageSquare,
+    title: 'Verfügbarkeit',
+    description: 'Ich antworte in der Regel innerhalb von 24 Stunden',
+  },
+];
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -40,38 +64,38 @@ export default function Contact() {
         <div className="grid md:grid-cols-2 gap-8">
           {/* Contact Info */}
           <div className="space-y-6">
-            <div className="group relative overflow-hidden rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-6 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-cyan-400/40">
-              <span className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-500/10 via-blue-500/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" aria-hidden="true" />
-              <div className="relative z-10 flex items-start gap-4">
-                <div className="relative flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-slate-900/70 text-cyan-300">
-                  <span className="absolute inset-0 rounded-xl border border-cyan-400/30" aria-hidden="true" />
-                  <Mail className="w-6 h-6" />
-                </div>
-                <div className="space-y-1">
-                  <h3 className="text-white font-semibold">Email</h3>
-                  <a href="mailto:hello@elijahkiefer.com" className="inline-flex items-center gap-2 text-slate-300 transition-colors duration-300 hover:text-cyan-300">
-                    <span className="h-1 w-1 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 shadow-[0_0_6px_rgba(34,211,238,0.7)]" />
-                    hello@elijahkiefer.com
-                  </a>
-                </div>
-              </div>
-            </div>
+            {CONTACT_CARDS.map((card) => {
+              const Icon = card.icon;
 
-            <div className="group relative overflow-hidden rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-6 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-cyan-400/40">
-              <span className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-500/10 via-blue-500/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" aria-hidden="true" />
-              <div className="relative z-10 flex items-start gap-4">
-                <div className="relative flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-slate-900/70 text-cyan-300">
-                  <span className="absolute inset-0 rounded-xl border border-cyan-400/30" aria-hidden="true" />
-                  <MessageSquare className="w-6 h-6" />
+              return (
+                <div
+                  key={card.title}
+                  className="group relative overflow-hidden rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-6 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-cyan-400/40"
+                >
+                  <span className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-500/10 via-blue-500/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" aria-hidden="true" />
+                  <div className="relative z-10 flex items-start gap-4">
+                    <div className="relative flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-slate-900/70 text-cyan-300">
+                      <span className="absolute inset-0 rounded-xl border border-cyan-400/30" aria-hidden="true" />
+                      <Icon aria-hidden="true" className="h-6 w-6" />
+                    </div>
+                    <div className="space-y-1">
+                      <h3 className="text-white font-semibold">{card.title}</h3>
+                      {card.href ? (
+                        <a
+                          href={card.href}
+                          className="inline-flex items-center gap-2 text-slate-300 transition-colors duration-300 hover:text-cyan-300"
+                        >
+                          <span className="h-1 w-1 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 shadow-[0_0_6px_rgba(34,211,238,0.7)]" />
+                          {card.actionLabel}
+                        </a>
+                      ) : (
+                        <p className="text-slate-400">{card.description}</p>
+                      )}
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-white font-semibold mb-2">Verfügbarkeit</h3>
-                  <p className="text-slate-400">
-                    Ich antworte in der Regel innerhalb von 24 Stunden
-                  </p>
-                </div>
-              </div>
-            </div>
+              );
+            })}
 
             {/* Quote */}
             <div className="relative overflow-hidden rounded-2xl border border-cyan-400/20 bg-gradient-to-br from-cyan-500/10 via-blue-500/5 to-transparent p-6 backdrop-blur-xl">

@@ -1,29 +1,43 @@
+import type { LucideIcon } from 'lucide-react';
 import { Code, Dumbbell, Target, Zap } from 'lucide-react';
 
-export default function About() {
-  const interests = [
-    {
-      icon: <Code className="w-8 h-8" />,
-      title: 'AI Automations',
-      description: 'Entwicklung intelligenter Automatisierungslösungen, die Prozesse optimieren und Zeit sparen.',
-    },
-    {
-      icon: <Target className="w-8 h-8" />,
-      title: 'Web Design',
-      description: 'Kreation moderner, responsiver Websites mit fokus auf User Experience und Performance.',
-    },
-    {
-      icon: <Dumbbell className="w-8 h-8" />,
-      title: 'Sport & Fitness',
-      description: 'Leidenschaftlicher Fußballer und Gym-Enthusiast. Balance zwischen Code und Kraft.',
-    },
-    {
-      icon: <Zap className="w-8 h-8" />,
-      title: 'Duales Studium',
-      description: 'Kombination aus praktischer Erfahrung und theoretischem Wissen in der Tech-Branche.',
-    },
-  ];
+type Interest = {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+};
 
+const INTERESTS: Interest[] = [
+  {
+    icon: Code,
+    title: 'AI Automations',
+    description: 'Entwicklung intelligenter Automatisierungslösungen, die Prozesse optimieren und Zeit sparen.',
+  },
+  {
+    icon: Target,
+    title: 'Web Design',
+    description: 'Kreation moderner, responsiver Websites mit Fokus auf User Experience und Performance.',
+  },
+  {
+    icon: Dumbbell,
+    title: 'Sport & Fitness',
+    description: 'Leidenschaftlicher Fußballer und Gym-Enthusiast. Balance zwischen Code und Kraft.',
+  },
+  {
+    icon: Zap,
+    title: 'Duales Studium',
+    description: 'Kombination aus praktischer Erfahrung und theoretischem Wissen in der Tech-Branche.',
+  },
+];
+
+const STATS = [
+  { label: 'Engagement', value: '100%' },
+  { label: 'Fokus', value: 'AI' },
+  { label: 'Motivation', value: '24/7' },
+  { label: 'Potenzial', value: '∞' },
+];
+
+export default function About() {
   return (
     <section id="about" className="relative py-24 px-6 scroll-mt-32">
       <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/95 to-slate-950" aria-hidden="true" />
@@ -42,30 +56,34 @@ export default function About() {
 
         {/* Cards Grid */}
         <div className="grid md:grid-cols-2 gap-6">
-          {interests.map((interest, index) => (
-            <div
-              key={index}
-              className="group relative overflow-hidden rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-8 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-cyan-400/40"
-            >
-              <span className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-500/10 via-blue-500/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" aria-hidden="true" />
-              <div className="relative z-10 mb-6 flex h-16 w-16 items-center justify-center rounded-xl bg-slate-900/70 text-cyan-300">
-                <span className="absolute inset-0 rounded-xl border border-cyan-400/25" aria-hidden="true" />
-                <span className="absolute -inset-2 -z-10 rounded-[22px] bg-gradient-to-br from-cyan-500/20 via-blue-500/10 to-fuchsia-500/20 blur-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" aria-hidden="true" />
-                {interest.icon}
+          {INTERESTS.map((interest) => {
+            const Icon = interest.icon;
+
+            return (
+              <div
+                key={interest.title}
+                className="group relative overflow-hidden rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-8 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-cyan-400/40"
+              >
+                <span className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-500/10 via-blue-500/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" aria-hidden="true" />
+                <div className="relative z-10 mb-6 flex h-16 w-16 items-center justify-center rounded-xl bg-slate-900/70 text-cyan-300">
+                  <span className="absolute inset-0 rounded-xl border border-cyan-400/25" aria-hidden="true" />
+                  <span className="absolute -inset-2 -z-10 rounded-[22px] bg-gradient-to-br from-cyan-500/20 via-blue-500/10 to-fuchsia-500/20 blur-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" aria-hidden="true" />
+                  <Icon aria-hidden="true" className="h-8 w-8" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-3">
+                  {interest.title}
+                </h3>
+                <p className="text-slate-400 leading-relaxed">
+                  {interest.description}
+                </p>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-3">
-                {interest.title}
-              </h3>
-              <p className="text-slate-400 leading-relaxed">
-                {interest.description}
-              </p>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Stats */}
         <div className="mt-16 grid grid-cols-2 gap-6 md:grid-cols-4">
-          {[{ label: 'Engagement', value: '100%' }, { label: 'Fokus', value: 'AI' }, { label: 'Motivation', value: '24/7' }, { label: 'Potenzial', value: '∞' }].map((stat) => (
+          {STATS.map((stat) => (
             <div
               key={stat.label}
               className="relative overflow-hidden rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-6 text-center backdrop-blur-xl"

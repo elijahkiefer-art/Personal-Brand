@@ -28,8 +28,8 @@ export default function Navigation() {
   }, []);
 
   useEffect(() => {
-    if (!isMenuOpen) {
-      return;
+    if (typeof window === 'undefined') {
+      return undefined;
     }
 
     const handleResize = () => {
@@ -51,9 +51,25 @@ export default function Navigation() {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('keydown', handleKeydown);
     };
+  }, []);
+
+  useEffect(() => {
+    if (typeof document === 'undefined') {
+      return undefined;
+    }
+
+    document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [isMenuOpen]);
 
   useEffect(() => {
+    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
+      return undefined;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries
