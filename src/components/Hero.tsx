@@ -88,6 +88,32 @@ export default function Hero() {
               <Mail className="w-5 h-5" />
             </a>
           </div>
+
+          <div className="mt-12 grid gap-4 text-left sm:grid-cols-3 opacity-0 animate-fade-in animation-delay-1000">
+            {[ 
+              {
+                label: 'Status',
+                value: 'Offen für neue Projekte Q2',
+              },
+              {
+                label: 'Standort',
+                value: 'Stuttgart · Remote first',
+              },
+              {
+                label: 'Antwortzeit',
+                value: 'Ø 24 Stunden',
+              },
+            ].map((item) => (
+              <div
+                key={item.label}
+                className="group relative overflow-hidden rounded-2xl border border-cyan-400/20 bg-slate-900/60 p-5 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-cyan-400/40"
+              >
+                <span className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-500/15 via-blue-500/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" aria-hidden="true" />
+                <div className="relative z-10 text-xs uppercase tracking-[0.3em] text-cyan-200/80">{item.label}</div>
+                <div className="relative z-10 mt-3 text-lg font-semibold text-white">{item.value}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
