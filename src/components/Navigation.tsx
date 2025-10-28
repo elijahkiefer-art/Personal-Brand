@@ -1,13 +1,10 @@
-import { useEffect, useId, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Menu, Sparkles, X } from 'lucide-react';
 
 const navigationLinks = [
   { href: '#home', label: 'Home' },
   { href: '#about', label: 'Über mich' },
   { href: '#services', label: 'Services' },
-  { href: '#projects', label: 'Projekte' },
-  { href: '#process', label: 'Workflow' },
-  { href: '#testimonials', label: 'Stimmen' },
   { href: '#contact', label: 'Kontakt' },
 ];
 
@@ -15,7 +12,6 @@ export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('#home');
-  const mobileMenuId = useId();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,8 +27,8 @@ export default function Navigation() {
   }, []);
 
   useEffect(() => {
-    if (typeof window === 'undefined') {
-      return undefined;
+    if (!isMenuOpen) {
+      return;
     }
 
     const handleResize = () => {
@@ -41,38 +37,14 @@ export default function Navigation() {
       }
     };
 
-    const handleKeydown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setIsMenuOpen(false);
-      }
-    };
-
     window.addEventListener('resize', handleResize);
-    window.addEventListener('keydown', handleKeydown);
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      window.removeEventListener('keydown', handleKeydown);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (typeof document === 'undefined') {
-      return undefined;
-    }
-
-    document.body.style.overflow = isMenuOpen ? 'hidden' : '';
-
-    return () => {
-      document.body.style.overflow = '';
     };
   }, [isMenuOpen]);
 
   useEffect(() => {
-    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
-      return undefined;
-    }
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries
@@ -107,10 +79,7 @@ export default function Navigation() {
       }`}
     >
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-950/30 to-transparent" />
-      <nav
-        className="relative mx-auto flex max-w-6xl items-center justify-between px-6 py-6"
-        aria-label="Hauptnavigation"
-      >
+      <nav className="relative mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
         <div
           className={`relative flex w-full items-center justify-between gap-6 overflow-hidden rounded-2xl border border-slate-800/60 bg-slate-950/80 px-5 py-4 backdrop-blur-2xl transition-all duration-500 ${
             isScrolled ? 'shadow-[0_25px_60px_-30px_rgba(14,165,233,0.65)]' : 'shadow-[0_30px_80px_-45px_rgba(14,165,233,0.55)]'
@@ -134,45 +103,43 @@ export default function Navigation() {
             </div>
           </a>
 
-          <ul className="relative z-10 hidden items-center gap-2 md:flex">
+          <div className="relative z-10 hidden items-center gap-2 md:flex">
             {navigationLinks.map((link) => {
               const isActive = activeSection === link.href;
               return (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    aria-current={isActive ? 'page' : undefined}
-                    className={`group relative overflow-hidden rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
-                      isActive
-                        ? 'text-white'
-                        : 'text-slate-300 hover:text-white'
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className={`group relative overflow-hidden rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
+                    isActive
+                      ? 'text-white'
+                      : 'text-slate-300 hover:text-white'
+                  }`}
+                >
+                  <span
+                    className={`absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-fuchsia-500/20 blur-md transition-opacity duration-300 ${
+                      isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-70'
                     }`}
-                  >
+                    aria-hidden="true"
+                  />
+                  <span
+                    className={`absolute inset-[1px] rounded-full bg-slate-900/60 transition-opacity duration-300 ${
+                      isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-60'
+                    }`}
+                    aria-hidden="true"
+                  />
+                  <span className="relative z-10 flex items-center gap-2">
                     <span
-                      className={`absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-fuchsia-500/20 blur-md transition-opacity duration-300 ${
-                        isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-70'
+                      className={`h-1.5 w-1.5 rounded-full transition-colors duration-300 ${
+                        isActive ? 'bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]' : 'bg-slate-500 group-hover:bg-cyan-300'
                       }`}
-                      aria-hidden="true"
                     />
-                    <span
-                      className={`absolute inset-[1px] rounded-full bg-slate-900/60 transition-opacity duration-300 ${
-                        isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-60'
-                      }`}
-                      aria-hidden="true"
-                    />
-                    <span className="relative z-10 flex items-center gap-2">
-                      <span
-                        className={`h-1.5 w-1.5 rounded-full transition-colors duration-300 ${
-                          isActive ? 'bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]' : 'bg-slate-500 group-hover:bg-cyan-300'
-                        }`}
-                      />
-                      {link.label}
-                    </span>
-                  </a>
-                </li>
+                    {link.label}
+                  </span>
+                </a>
               );
             })}
-          </ul>
+          </div>
 
           <div className="relative z-10 hidden md:flex">
             <a
@@ -189,8 +156,6 @@ export default function Navigation() {
             onClick={toggleMenu}
             className="relative z-10 inline-flex items-center justify-center rounded-xl border border-slate-700/70 bg-slate-900/70 p-2 text-slate-200 transition-all duration-300 hover:border-cyan-400/60 hover:text-white md:hidden"
             aria-label="Navigation öffnen"
-            aria-expanded={isMenuOpen}
-            aria-controls={mobileMenuId}
           >
             <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-fuchsia-500/10 opacity-0 transition-opacity duration-300 hover:opacity-100" aria-hidden="true" />
             {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -199,39 +164,33 @@ export default function Navigation() {
       </nav>
 
       <div
-        id={mobileMenuId}
         className={`md:hidden transform border-t border-slate-800/60 bg-slate-950/95 backdrop-blur-2xl transition-all duration-500 ${
           isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}
-        aria-hidden={!isMenuOpen}
       >
         <div className="flex flex-col gap-4 px-6 py-6">
-          <ul className="flex flex-col gap-4">
-            {navigationLinks.map((link) => {
-              const isActive = activeSection === link.href;
-              return (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    onClick={closeMenu}
-                    aria-current={isActive ? 'page' : undefined}
-                    className={`flex items-center gap-3 rounded-2xl border border-transparent px-4 py-3 text-base font-medium transition-all duration-300 ${
-                      isActive
-                        ? 'border-cyan-400/40 bg-cyan-500/10 text-white'
-                        : 'text-slate-200 hover:border-cyan-400/30 hover:bg-cyan-500/5 hover:text-white'
-                    }`}
-                  >
-                    <span
-                      className={`h-1.5 w-1.5 rounded-full transition-colors duration-300 ${
-                        isActive ? 'bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.7)]' : 'bg-slate-500'
-                      }`}
-                    />
-                    {link.label}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
+          {navigationLinks.map((link) => {
+            const isActive = activeSection === link.href;
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={closeMenu}
+                className={`flex items-center gap-3 rounded-2xl border border-transparent px-4 py-3 text-base font-medium transition-all duration-300 ${
+                  isActive
+                    ? 'border-cyan-400/40 bg-cyan-500/10 text-white'
+                    : 'text-slate-200 hover:border-cyan-400/30 hover:bg-cyan-500/5 hover:text-white'
+                }`}
+              >
+                <span
+                  className={`h-1.5 w-1.5 rounded-full transition-colors duration-300 ${
+                    isActive ? 'bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.7)]' : 'bg-slate-500'
+                  }`}
+                />
+                {link.label}
+              </a>
+            );
+          })}
           <a
             href="#contact"
             onClick={closeMenu}

@@ -118,7 +118,7 @@ export default function Hero() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 animate-fade-in animation-delay-[1200ms]">
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 animate-fade-in animation-delay-1000">
         <div className="w-6 h-10 rounded-full border border-cyan-400/50 bg-slate-900/60 backdrop-blur-xl">
           <div className="mx-auto mt-2 h-2 w-2 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 animate-bounce" />
         </div>

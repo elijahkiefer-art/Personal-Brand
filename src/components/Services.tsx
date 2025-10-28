@@ -37,13 +37,8 @@ const SERVICES: Service[] = [
 
 export default function Services() {
   return (
-    <section id="services" className="relative py-24 px-6 scroll-mt-32">
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/90 to-slate-950" aria-hidden="true" />
-      <div
-        className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(14,165,233,0.18),_transparent_60%)]"
-        aria-hidden="true"
-      />
-      <div className="container relative z-10 mx-auto max-w-7xl">
+    <section id="services" className="py-24 px-6 bg-slate-900/30 scroll-mt-32">
+      <div className="container mx-auto max-w-7xl">
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
