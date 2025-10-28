@@ -46,10 +46,8 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-24 px-6 scroll-mt-32">
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/95 to-slate-950" aria-hidden="true" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,_rgba(14,165,233,0.18),_transparent_60%)]" aria-hidden="true" />
-      <div className="container relative z-10 mx-auto max-w-4xl">
+    <section id="contact" className="py-24 px-6 scroll-mt-32">
+      <div className="container mx-auto max-w-4xl">
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
