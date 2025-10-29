@@ -46,6 +46,39 @@
     animation-delay: 1000ms;
   }
 
+  @keyframes navPulse {
+    0%,
+    100% {
+      opacity: 0.35;
+      transform: scale(0.98);
+    }
+    45% {
+      opacity: 0.9;
+      transform: scale(1.02);
+    }
+    70% {
+      opacity: 0.6;
+      transform: scale(1);
+    }
+  }
+
+  .animate-nav-pulse {
+    animation: navPulse 6s ease-in-out infinite;
+  }
+
+  @keyframes spinSlow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-spin-slow {
+    animation: spinSlow 12s linear infinite;
+  }
+
   /* Custom scrollbar */
   ::-webkit-scrollbar {
     width: 10px;
