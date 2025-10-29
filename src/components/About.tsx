@@ -39,10 +39,8 @@ const STATS = [
 
 export default function About() {
   return (
-    <section id="about" className="relative py-24 px-6 scroll-mt-32">
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/95 to-slate-950" aria-hidden="true" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(59,130,246,0.12),_transparent_60%)]" aria-hidden="true" />
-      <div className="container relative z-10 mx-auto max-w-6xl">
+    <section id="about" className="py-24 px-6 scroll-mt-32">
+      <div className="container mx-auto max-w-6xl">
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
